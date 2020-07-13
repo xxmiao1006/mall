@@ -1,7 +1,7 @@
 package com.macro.cloud.ribbonservice.controller;
 
-import com.macro.cloud.ribbonservice.domain.CommonResult;
-import com.macro.cloud.ribbonservice.domain.User;
+import com.macro.cloud.domain.CommonResult;
+import com.macro.cloud.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
