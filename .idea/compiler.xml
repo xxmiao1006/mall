@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-client" />
+        <module name="hystrix-service" />
         <module name="eureka-server" />
-        <module name="user-service" />
+        <module name="eureka-client" />
+        <module name="mall-common" />
         <module name="ribbon-service" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-client" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="hystrix-service" options="-parameters" />
       <module name="ribbon-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
