@@ -4,6 +4,8 @@ import com.macro.cloud.domain.CommonResult;
 import com.macro.cloud.domain.User;
 import com.macro.cloud.service.UserService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
     private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
+    //region 服务降级
     @HystrixCommand(fallbackMethod = "getDefaultUser")
     public CommonResult getUser(Long id) {
         return restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
@@ -57,5 +60,29 @@ public class UserServiceImpl implements UserService {
         User defaultUser = new User(-1L, "defaultUser", "123456");
         return new CommonResult<>(defaultUser);
     }
+    //endregion
 
+    //region 请求缓存
+    @CacheResult(cacheKeyMethod = "getCacheKey")
+    @HystrixCommand(fallbackMethod = "getDefaultUser", commandKey = "getUserCache")
+    public CommonResult getUserCache(Long id) {
+        LOGGER.info("getUserCache id:{}", id);
+        return restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
+    }
+
+    /**
+     * 为缓存生成key的方法
+     */
+    public String getCacheKey(Long id) {
+        return String.valueOf(id);
+    }
+
+    @CacheRemove(commandKey = "getUserCache", cacheKeyMethod = "getCacheKey")
+    @HystrixCommand
+    public CommonResult removeCache(Long id) {
+        LOGGER.info("removeCache id:{}", id);
+        return restTemplate.postForObject(userServiceUrl + "/user/delete/{1}", null, CommonResult.class, id);
+    }
+
+    //endregion
 }

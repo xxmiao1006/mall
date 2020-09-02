@@ -9,4 +9,8 @@ public interface UserService {
     CommonResult getUserCommand(Long id);
 
     CommonResult getUserException(Long id);
+
+    CommonResult getUserCache(Long id);
+
+    CommonResult removeCache(Long id);
 }
