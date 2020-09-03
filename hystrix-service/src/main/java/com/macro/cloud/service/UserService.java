@@ -1,6 +1,9 @@
 package com.macro.cloud.service;
 
 import com.macro.cloud.domain.CommonResult;
+import com.macro.cloud.domain.User;
+
+import java.util.concurrent.Future;
 
 public interface UserService {
 
@@ -13,4 +16,6 @@ public interface UserService {
     CommonResult getUserCache(Long id);
 
     CommonResult removeCache(Long id);
+
+    Future<User> getUserFuture(Long id);
 }
