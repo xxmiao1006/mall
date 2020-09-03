@@ -11,6 +11,8 @@
         <module name="eureka-client" />
         <module name="mall-common" />
         <module name="ribbon-service" />
+        <module name="hystrix-dashboard" />
+        <module name="turbine-service" />
         <module name="user-service" />
       </profile>
     </annotationProcessing>
@@ -19,8 +21,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-client" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="hystrix-dashboard" options="-parameters" />
       <module name="hystrix-service" options="-parameters" />
       <module name="ribbon-service" options="-parameters" />
+      <module name="turbine-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
