@@ -9,3 +9,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://macro:123456@localhost:8004/eureka/
+#  instance: #eureka客户端实例配置
+#    lease-renewal-interval-in-seconds: 1 #定义服务多久去注册中心续约
+#    lease-expiration-duration-in-seconds: 2 #定义服务多久不去续约认为服务失效
