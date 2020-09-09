@@ -12,6 +12,13 @@
         <module>user-service</module>
         <module>hystrix-service</module>
         <module>mall-common</module>
+        <module>hystrix-dashboard</module>
+        <module>ribbon-service</module>
+        <module>eureka-client</module>
+        <module>eureka-server</module>
+        <module>feign-service</module>
+        <module>turbine-service</module>
+        <module>zuul-proxy</module>
     </modules>
 
 
