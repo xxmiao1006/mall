@@ -1,0 +1,28 @@
+
+server:
+  port: 8801
+spring:
+  application:
+    name: zuul-proxy
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://macro:123456@localhost:8004/eureka/
+zuul:
+  routes:
+    user-service:
+      path: /userService/**
+    feign-service:
+      path: /feignService/**
+#  add-host-header: true #设置为true重定向是会添加host请求头
+#  prefix: /proxy  #给网关路由添加前缀
+#  ignored-services: user-service,feign-service #关闭默认路由配置
+
+#开启查看路由的端点  http://localhost:8801/actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'routes'
